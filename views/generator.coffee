@@ -4,7 +4,7 @@ do -> Array::shuffle ?= ->
     [@[i], @[j]] = [@[j], @[i]]
   @
 
-visualize = (tasks, topics) ->
+topic = (tasks, topics) ->
 				stasks = tasks.shuffle()
 				stopics = topics.shuffle()
 				task = stasks[0]
@@ -12,9 +12,14 @@ visualize = (tasks, topics) ->
 				while /TOPIC/.test(task)
 								task = task.replace /TOPIC/, stopics[i]
 								i += 1
-				$('body').append(task)
+				task
 
-$(document).ready ->
-				$.getJSON('/tasks.json').done (tasks) ->
-								$.getJSON('/topics.json').done (topics) ->
-												visualize(tasks, topics)
+visualize = (s, prefix="") ->
+				$.getJSON(prefix + '/topics.json')
+								.done (topics) ->
+												$.getJSON(prefix + '/tasks.json').done (tasks) ->
+																t = topic(tasks, topics)
+																$(s).append(t)
+								.fail (h, t, e) -> alert("#{e}: #{t} #{h}")
+
+#$(document).ready -> visualize('body')
