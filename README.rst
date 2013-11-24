@@ -1,11 +1,9 @@
 ========
-Octogit
+Creative Contrains
 ========
 
-This repository has been created with Octogit.
-
-.. image:: http://myusuf3.github.com/octogit/assets/img/readme_image.png
+Gives you tasks to for creative writing. Pull requests very welcome
 
 Author
 ======
-Mahdi Yusuf (@myusuf3)
+Zombiecalypse
