@@ -4,7 +4,30 @@ do -> Array::shuffle ?= ->
     [@[i], @[j]] = [@[j], @[i]]
   @
 
-topic = (tasks, topics) ->
+tasks = [ "Make a riddle having TOPIC as a solution.",
+	"Make a plot involving TOPIC as a theme.",
+	"Make a poem about TOPIC without using it as a word.",
+	"Make a poem about TOPIC where a one word change inverses the meaning.",
+	"Collect poetic descriptions for  TOPIC.",
+	"Collect blunt descriptions for  TOPIC.",
+	"Plot to take over the world using TOPIC, TOPIC, and TOPIC."
+	]
+topics = [
+	"love",
+	"death",
+	"cats",
+	"electricity",
+	"the internet",
+	"life",
+	"Goedels incompleteness theorem",
+	"whisky",
+	"water",
+	"being honest",
+	"a game of your choice",
+	"a ball pen"
+]
+
+topic = () ->
 				stasks = tasks.shuffle()
 				stopics = topics.shuffle()
 				task = stasks[0]
@@ -14,12 +37,8 @@ topic = (tasks, topics) ->
 								i += 1
 				task
 
-visualize = (s, prefix="") ->
-				$.getJSON(prefix + '/topics.json')
-								.done (topics) ->
-												$.getJSON(prefix + '/tasks.json').done (tasks) ->
-																t = topic(tasks, topics)
-																$(s).append(t)
-								.fail (h, t, e) -> alert("#{e}: #{t} #{h}")
+visualize = (s) -> 
+	t = topic(tasks, topics)
+	$(s).append(t)
 
-#$(document).ready -> visualize('body')
+$(document).ready -> visualize('body')
